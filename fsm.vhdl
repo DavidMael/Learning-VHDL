@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 
 entity fsm is
     port (
-        --clk: in bit;
+        clk: in std_logic;
         state: out std_logic_vector (1 downto 0)
     );
 end fsm;
@@ -11,17 +11,17 @@ end fsm;
 architecture behave_fsm of fsm is
     type state_type is (one,two,three);
     signal statelocal : state_type;
-    signal clk: std_logic;
-    constant clk_period : time := 10 ns;
+    --signal clk: std_logic;
+    --constant clk_period : time := 10 ns;
 begin
 
-    clk_process: process
-    begin
-        clk <= '0';
-        wait for clk_period/2;
-        clk <= '1';
-        wait for clk_period/2;
-    end process;
+    --clk_process: process
+    --begin
+    --    clk <= '0';
+    --    wait for clk_period/2;
+    --   clk <= '1';
+    --    wait for clk_period/2;
+    --end process;
 
 
     fsm_process: process (clk)
