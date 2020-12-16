@@ -21,12 +21,17 @@ architecture behave of fsm_tb is
 begin
 
     tb_clk_process: process
-        begin
+    begin
+        for i in 0 to 5 loop
             tb_clk <= '0';
-        wait for clk_period/2;
+            wait for clk_period/2;
             tb_clk <= '1';
-        wait for clk_period/2;
+            wait for clk_period/2;
+        end loop;
+
+        assert false report "Six cycles over" severity failure;
     end process;
+
 
     fsm_dut: fsm port map (tb_clk, tb_state); 
 
