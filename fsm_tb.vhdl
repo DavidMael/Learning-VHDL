@@ -12,10 +12,18 @@ architecture behave of fsm_tb is
             state: out std_logic_vector (1 downto 0)
         );
     end component;
+
+    component fsm_rom is
+        port(
+            addr: in std_logic_vector (1 downto 0);
+            data: out std_logic_vector (7 downto 0) 
+        );
+    end component;
     
 
     signal tb_clk: std_logic;
     signal tb_state: std_logic_vector (1 downto 0);
+    signal mem_out: std_logic_vector (7 downto 0);
     constant clk_period : time := 10 ns;
 
 begin
@@ -34,6 +42,8 @@ begin
 
 
     fsm_dut: fsm port map (tb_clk, tb_state); 
+
+    fsm_mem: fsm_rom port map (tb_state, mem_out);
 
 
 end behave;
